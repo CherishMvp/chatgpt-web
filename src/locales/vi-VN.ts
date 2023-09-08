@@ -26,6 +26,7 @@ export default {
     failed: 'Thất bại',
     verify: 'Xác minh',
     unauthorizedTips: 'Không được ủy quyền, vui lòng xác minh trước.',
+    stopResponding: 'Đừng trả lời',
   },
   chat: {
     newChatButton: 'Tạo hội thoại',
