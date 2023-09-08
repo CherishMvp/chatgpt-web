@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": false,
   "description": "ChatGPT Web Service",
-  "author": "ChenZhaoYu <chenzhaoyu1994@gmail.com>",
+  "module": "conmonjs转人工",
+  "author": "ZhangWenTao <lookcherish@163.com>",
   "keywords": [
     "chatgpt-web",
     "chatgpt",
