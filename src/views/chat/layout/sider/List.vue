@@ -1,11 +1,10 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { NInput, NPopconfirm, NScrollbar } from 'naive-ui'
-import { SvgIcon } from '@/components/common'
 import { useAppStore, useChatStore } from '@/store'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { debounce } from '@/utils/functions/debounce'
-
+import { SvgIcon } from '@/components/common'
 const { isMobile } = useBasicLayout()
 
 const appStore = useAppStore()
@@ -56,7 +55,7 @@ function isActive(uuid: number) {
       <template v-if="!dataSources.length">
         <div class="flex flex-col items-center mt-4 text-center text-neutral-300">
           <SvgIcon icon="ri:inbox-line" class="mb-2 text-3xl" />
-          <span>{{ $t('common.noData') }}</span>
+          <span>{{ $t("common.noData") }}</span>
         </div>
       </template>
       <template v-else>
@@ -70,11 +69,7 @@ function isActive(uuid: number) {
               <SvgIcon icon="ri:message-3-line" />
             </span>
             <div class="relative flex-1 overflow-hidden break-all text-ellipsis whitespace-nowrap">
-              <NInput
-                v-if="item.isEdit"
-                v-model:value="item.title" size="tiny"
-                @keypress="handleEnter(item, false, $event)"
-              />
+              <NInput v-if="item.isEdit" v-model:value="item.title" size="tiny" @keypress="handleEnter(item, false, $event)" />
               <span v-else>{{ item.title }}</span>
             </div>
             <div v-if="isActive(item.uuid)" class="absolute z-10 flex visible right-1">
@@ -93,7 +88,7 @@ function isActive(uuid: number) {
                       <SvgIcon icon="ri:delete-bin-line" />
                     </button>
                   </template>
-                  {{ $t('chat.deleteHistoryConfirm') }}
+                  {{ $t("chat.deleteHistoryConfirm") }}
                 </NPopconfirm>
               </template>
             </div>

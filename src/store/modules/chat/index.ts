@@ -12,7 +12,9 @@ export const useChatStore = defineStore('chat-store', {
         return state.history[index]
       return null
     },
-
+    chatNumber(state: Chat.ChatState) {
+      return state.chat?.length
+    },
     getChatByUuid(state: Chat.ChatState) {
       return (uuid?: number) => {
         if (uuid)
@@ -33,8 +35,16 @@ export const useChatStore = defineStore('chat-store', {
       this.chat.unshift({ uuid: history.uuid, data: chatData })
       this.active = history.uuid
       this.reloadRoute(history.uuid)
+      global.console.log('当前具有的聊天框', this.chat)
+      global.console.log('历史记录', this.history)
     },
-
+    clearAll() {
+      this.chat = []
+      this.history = []
+      this.active = null
+      this.reloadRoute() // 重新进入根路由
+      global.console.log('已经清空聊天框', this.chat)
+    },
     updateHistory(uuid: number, edit: Partial<Chat.History>) {
       const index = this.history.findIndex(item => item.uuid === uuid)
       if (index !== -1) {
@@ -95,6 +105,7 @@ export const useChatStore = defineStore('chat-store', {
     addChatByUuid(uuid: number, chat: Chat.Chat) {
       if (!uuid || uuid === 0) {
         if (this.history.length === 0) {
+          global.console.log('this.history.length', this.history.length)
           const uuid = Date.now()
           this.history.push({ uuid, title: chat.text, isEdit: false })
           this.chat.push({ uuid, data: [chat] })
@@ -116,6 +127,7 @@ export const useChatStore = defineStore('chat-store', {
           this.history[index].title = chat.text
         this.recordState()
       }
+      global.console.log('added chat', this.chat)
     },
 
     updateChatByUuid(uuid: number, index: number, chat: Chat.Chat) {
